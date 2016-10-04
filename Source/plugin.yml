@@ -1,0 +1,19 @@
+name: CKFloatingText
+main: Craftklinik\CKFloatingText
+version: 1.0
+api: 2.0.0
+author: Craftklinik
+website: http://craftklinik.de
+
+commands:
+  addtag:
+    desctiption: Fügt einen Text hinzu!
+    permission: afloatingtext.addtag
+permissions:
+  afloatingtext:
+    default: op
+    desctiption: 
+    childrem:
+      afloatingtext.addtext:
+        default: op
+        desctiption: 
