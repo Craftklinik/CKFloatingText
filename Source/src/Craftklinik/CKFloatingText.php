@@ -20,18 +20,17 @@
 		public function onEnable() {
 			if(!is_dir($this->getDataFolder()))
 				@mkdir($this->getDataFolder());
-			$this->config = (new Config($this->getDataFolder().'FloatingText_DB.yml', Config::YAML))->getAll();
+			$this->config = (new Config($this->getDataFolder().'FloatingText.yml', Config::YAML))->getAll();
 			$this->getServer()->getPluginManager()->registerEvents($this, $this);
-			$this->getLogger()->info(TextFormat::GREEN."Plugin geladen!");
-			$this->getLogger()->info(TextFormat::RED."Plugin by Craftklinik!");
-			$this->getLogger()->info(TextFormat::AQUA."Craftklinik on Twitter: Craftklinik");
+			$this->getLogger()->info(TextFormat::GREEN."Plugin aktiviert!");
+			$this->getLogger()->info(TextFormat::AQUA."Plugin by Craftklinik!");
 		}
 
 		public function onDisable() {
-			$cfg = new Config($this->getDataFolder().'FloatingText_DB.yml', Config::YAML);
+			$cfg = new Config($this->getDataFolder().'FloatingText.yml', Config::YAML);
 			$cfg->setAll($this->config);
 			$cfg->save();
-			$this->getLogger()->info(TextFormat::GREEN."Plugin ungeladen!!");
+			$this->getLogger()->info(TextFormat::RED."Plugin deaktiviert!!");
 		}
 
 		public function onJoin(PlayerJoinEvent $event) {
@@ -63,7 +62,7 @@
 						$y = $sender->getY() + 2;
 						$z = $sender->getZ();
 						$this->config[$x.':'.$y.':'.$z] = $text;
-						$cfg = new Config($this->getDataFolder().'FloatingText_DB.yml', Config::YAML);
+						$cfg = new Config($this->getDataFolder().'FloatingText.yml', Config::YAML);
 						$cfg->setAll($this->config);
 						$cfg->save();
 						$br = explode("\\n", $text);
@@ -74,7 +73,7 @@
 						$sender->sendMessage(TextFormat::AQUA."§c[§aCKFloatingText§c] §r§e Der Text wurde auf den Koordinaten: $x $y $z gesetzt!");
 					} else $sender->sendMessage(TextFormat::RED."Benutze: /addtag <text>");
 				}
-			} else $sender->sendMessage(TextFormat::RED."Only for players");
+			} else $sender->sendMessage(TextFormat::RED."Use This Command In-game");
 		}
 
 	}
